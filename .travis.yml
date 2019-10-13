@@ -2,34 +2,41 @@ dist: trusty
 sudo: true
 git:
   depth: false
-addons:
-  sonarcloud:
-    organization: lucacappelletti94-github
-    token:
-      secure: ASXjZ8tiIIwI3dOvPmlfdV3N9tfv8yAN2KImWoFVxLXYFFZmrHxMTH8vxHqaHt48slqIgOGYoOTMPez4YuSalwkwXSKP12+HubyMVJf+6UkSshIqR7HGjYep4aavjThoZ7txSXnrVkzHnxN7m4trMK9w6BneMYpmFZnxMREi4hYhBF8zFVe/idQXTnggfyaXGM+7Dz+kNfub4ra6qAJNO8Gpfu2GMdcz4531Pe+DNxCZ0Afqb4R63Z35gNq0m2gHp32OUGGmiDo/ZntCTEfovexrog0lHLb4JTOLoEHvKfN0z4SR4v+TzZ5KrzgjiSij9RA3tLzbIX8tulXHrImAY3O/PUWVJwX3vzX3/urgGxzD1KWjcDks9YV2Pvog2LnFQAdhNAdNui1Pg5fCYyvSdFOAQIlFM2ODTDMDtOmvKTMKWkhSUiS4WTleOQFxF5lxntUJJzgQRlCUQQX6Xis6IMaCPn6JLvM41/7hjVcS/kRV7rJZ6pDn2x+02mwcFgT3M1ED0Z9lQgPGz68YSvcAILJG5W3Y1w2Gj2JvN25qQPTEEm+UHlw45Pr8xfLg9amczjfBy/KLH5+A0fHYYYkpyE7HjQQy7dSNqXIqRQqPBvwwPN0YMVP4+IpFDu+hdMudIbFGPCMyHo7uBows6ou2mxnRselK7lFBwSkt8yQmbbs=
-  apt:
-    packages:
-      - libgstreamer1.0
-      - libgirepository1.0-dev
-      - gcc
-      - libcairo2-dev
-      - pkg-config
-      - python3-dev
-      - gir1.2-gtk-3.0
 language: python
-python:
-- '3.6'
+matrix:
+  include:
+    - os: osx
+      osx_image: xcode7.3
+      language: generic
+      addons:
+        sonarcloud:
+          organization: lucacappelletti94-github
+          token:
+            secure: h4w0/ZpqloC9g9MJ5J7p/GqOUuxueO1ydfLJKmzzYAT2wH6RNIpipFsJQ+7+nEk7SApztJE3DrV6FLI9BZxDcqaDYrxAuOOiIuKFewq+aJkKTxI4zXbt2h1CoDT5CReJ93EvoSfJXlxwLGnPhUdSfFvDyzRzBZe1cjPuhEzPEX3NwFS1e5a3BloaOYwQ6kM2fWzUb1xpxII3GdY0mUE6zaquUqdPh/XfJEls3c6FdKmYnQmU4ml4Cq2nknFcPLUyuiAQ7Cfa+kI+2Wlg/1mxchQ45g+VCi7bfTJfRPAKc/DOnxZynBKr+KCo8HG7rlkkasDPG0wlwzUPDKrDb2J+D5W7FKjys5Vs/3LaOY/7jlCtkuIunld8H2gVcaE/CMODWDY8NGbSlzPSS+/SXU/Brc+SohziPd/zuyBlZo8ZuZRY5hMRu3ANYhEarJh0YfxiswQQDGktOf1YHBCyUaPRGGZfJxaAg7I3PU9aX6V8yGdwc7iPQpDyxaIM8nBjZTlhtW9oDSa/XTxfT/2bwFcHryLgdFlJwTOqdQOX0YiJn88I4P/KXlNeyyIVKzye/OTXskdrf6vhYDmUAQXfE/8hvzFuhXT28p56V2gYBHZ7TaM4xih7Or6cSQGyu4w4bplUeA0KqgNNyfuq3B64UDii9pn+crUDcFhXtn93qUCURcc=
+      before_install:
+        - pip install pyobjc
+      env:
+        - TRAVIS_PYTHON_VERSION=3.6.1
+        - OPTIONAL_DEPS=1
 before_install:
-- pip3 install pycairo
+  # prepare the system to install prerequisites or dependencies
+  - if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then
+      git clone https://github.com/matthew-brett/multibuild;
+      source multibuild/osx_utils.sh;
+      get_macpython_environment $TRAVIS_PYTHON_VERSION venv;
+    fi
+  - pip install --upgrade pytest
+before_install:
 - pip install tensorflow
 - pip install --upgrade pytest
 install:
 - pip install .[test]
 before_script:
-- curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
-  > ./cc-test-reporter
-- chmod +x ./cc-test-reporter
-- "./cc-test-reporter before-build"
+  - if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then
+      curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-darwin-amd64 > ./cc-test-reporter;
+    else
+      curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter;
+    fi  
 after_script:
 - "./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT"
 script:
