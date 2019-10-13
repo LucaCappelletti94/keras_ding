@@ -1,5 +1,5 @@
 dist: trusty
-sudo: false
+sudo: true
 git:
   depth: false
 addons:
@@ -10,12 +10,14 @@ addons:
   apt:
     packages:
       - libgstreamer1.0
-      - python-gi
 language: python
 python:
 - '3.6'
 before_install:
 - pip install tensorflow
+- pip uninstall gi
+- sudo apt-get install --reinstall python-gi
+- pip install gi
 - pip install --upgrade pytest
 install:
 - pip install .[test]
