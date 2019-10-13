@@ -15,7 +15,6 @@ python:
 - '3.6'
 before_install:
 - pip install tensorflow
-- pip uninstall gi
 - sudo apt-get install --reinstall python-gi
 - pip install gi
 - pip install --upgrade pytest
