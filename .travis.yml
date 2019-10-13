@@ -10,13 +10,19 @@ addons:
   apt:
     packages:
       - libgstreamer1.0
+      - libgirepository1.0-dev
+      - gcc
+      - libcairo2-dev
+      - pkg-config
+      - python3-dev
+      - gir1.2-gtk-3.0
 language: python
 python:
 - '3.6'
 before_install:
+- pip3 install pycairo
+- pip3 install PyGObject
 - pip install tensorflow
-- sudo apt-get install --reinstall python-gi
-- sudo apt-get install --reinstall python-gobject
 - pip install --upgrade pytest
 install:
 - pip install .[test]
