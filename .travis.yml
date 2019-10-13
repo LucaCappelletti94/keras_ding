@@ -25,7 +25,6 @@ before_install:
       source multibuild/osx_utils.sh;
       get_macpython_environment $TRAVIS_PYTHON_VERSION venv;
     fi
-  - pip install --upgrade pytest
 before_install:
 - pip install tensorflow
 - pip install --upgrade pytest
