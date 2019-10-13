@@ -11,6 +11,6 @@ def test_ding():
     model.fit(
         x=x,
         y=y,
-        epochs=10,
+        verbose=0,
         callbacks=[Ding()]
     )
