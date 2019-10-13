@@ -10,6 +10,7 @@ addons:
   apt:
     packages:
       - libgstreamer1.0
+      - python-gi
 language: python
 python:
 - '3.6'
