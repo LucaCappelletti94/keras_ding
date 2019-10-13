@@ -35,6 +35,7 @@ test_deps =[
     "validate_version_code",
     "codacy-coverage",
     "numpy",
+    "tensorflow",
     "silence_tensorflow"
 ]
 

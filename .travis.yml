@@ -23,7 +23,6 @@ before_install:
       source multibuild/osx_utils.sh;
       get_macpython_environment $TRAVIS_PYTHON_VERSION venv;
     fi
-  - pip install --upgrade tensorflow
   - pip install --upgrade pytest
   - pip install pyobjc
 install:
@@ -34,6 +33,8 @@ before_script:
     else
       curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter;
     fi  
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
 after_script:
 - "./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT"
 script:
