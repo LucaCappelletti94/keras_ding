@@ -21,7 +21,6 @@ python:
 - '3.6'
 before_install:
 - pip3 install pycairo
-- pip3 install PyGObject
 - pip install tensorflow
 - pip install --upgrade pytest
 install:
