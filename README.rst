@@ -12,6 +12,9 @@ As usual, just download it using pip:
 
     pip install keras_ding
 
+The callback is based upon the `python package playsound <https://github.com/TaylorSMarks/playsound>`_, which required
+a little additional setup for getting it started. Do check out its documentation to get started.
+
 Tests Coverage
 ----------------------------------------------
 Since some software handling coverages sometime get slightly different results, here's three of them:
@@ -31,6 +34,19 @@ Here you go:
         x, y,
         callbacks=[
             Ding()
+        ]
+    )
+
+What acount a custom sound? Just pass it as an argument.
+
+.. code:: python
+
+    from keras_ding import Ding
+
+    my_keras_model.fit(
+        x, y,
+        callbacks=[
+            Ding(path="my_custom_sound.mp3")
         ]
     )
 
