@@ -16,6 +16,7 @@ python:
 before_install:
 - pip install tensorflow
 - sudo apt-get install --reinstall python-gi
+- sudo apt-get install --reinstall python-gobject
 - pip install --upgrade pytest
 install:
 - pip install .[test]
