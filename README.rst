@@ -41,12 +41,12 @@ Keras callback for playing a sound when training is complete.
     :target: https://coveralls.io/github/LucaCappelletti94/keras_ding?branch=master
     :alt: Coveralls Coverage
 
-.. |pip| image:: https://badge.fury.io/py/keras_ding.svg
-    :target: https://badge.fury.io/py/keras_ding
+.. |pip| image:: https://badge.fury.io/py/keras-ding.svg
+    :target: https://badge.fury.io/py/keras-ding
     :alt: Pypi project
 
-.. |downloads| image:: https://pepy.tech/badge/keras_ding
-    :target: https://pepy.tech/badge/keras_ding
+.. |downloads| image:: https://pepy.tech/badge/keras-ding
+    :target: https://pepy.tech/badge/keras-ding
     :alt: Pypi total project downloads 
 
 .. |codacy|  image:: https://api.codacy.com/project/badge/Grade/0a2a0da8f69a4d2cb0f5065cadad8c87
