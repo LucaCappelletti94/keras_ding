@@ -15,6 +15,12 @@ As usual, just download it using pip:
 The callback is based upon the `python package playsound <https://github.com/TaylorSMarks/playsound>`_, which required
 a little additional setup for getting it started. Do check out its documentation to get started.
 
+On macOs it boils down to installing `pyobjc`, as follows:
+
+.. code:: shell
+
+    pip install pyobjc
+
 Tests Coverage
 ----------------------------------------------
 Since some software handling coverages sometime get slightly different results, here's three of them:
