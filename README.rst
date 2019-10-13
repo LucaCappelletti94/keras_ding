@@ -18,7 +18,21 @@ Since some software handling coverages sometime get slightly different results, 
 
 |coveralls| |sonar_coverage| |code_climate_coverage|
 
-Keras callback for playing a sound when training is complete.
+Usage examples
+-----------------------------------------------
+So suppose you have your keras model `my_keras_model` and you want to hear a sound when it is done training.
+Here you go:
+
+.. code:: python
+
+    from keras_ding import Ding
+
+    my_keras_model.fit(
+        x, y,
+        callbacks=[
+            Ding()
+        ]
+    )
 
 
 .. |travis| image:: https://travis-ci.org/LucaCappelletti94/keras_ding.png
