@@ -23,6 +23,7 @@ before_install:
       source multibuild/osx_utils.sh;
       get_macpython_environment $TRAVIS_PYTHON_VERSION venv;
     fi
+install:
   - pip install pip --upgrade
   - pip install 'gast==0.2.2'
   - pip uninstall -y numpy
@@ -30,8 +31,7 @@ before_install:
   - pip install tensorflow==2.0.0rc0
   - pip install --upgrade pytest
   - pip install pyobjc
-install:
-- pip install .[test]
+  - pip install .[test]
 before_script:
   - if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then
       curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-darwin-amd64 > ./cc-test-reporter;
