@@ -45,7 +45,7 @@ after_script:
 script:
 - rm -rf .coverage
 - coverage erase
-- pytest -vs --cov=keras_ding --cov-report xml:coverage.xml
+- pytest --cov=keras_ding --cov-report xml:coverage.xml
 - coverage combine --append || true
 - coverage report
 - coverage xml
