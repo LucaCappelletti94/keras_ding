@@ -1,5 +1,4 @@
 from tensorflow import keras
-import shutil
 import os
 from typing import List
 from playsound import playsound
@@ -35,10 +34,10 @@ class Ding(keras.callbacks.Callback):
             )
         if not os.path.exists(path):
             raise ValueError("Given path does not exists.")
-            
+
         if not any([path.endswith(ext) for ext in ["mp3", "wav"]]):
             raise ValueError("Given path is not an mp3 or wav file.")
-        
+
         self._path = path
 
     def on_train_end(self, *args: List):
