@@ -15,7 +15,7 @@ As usual, just download it using pip:
 The callback is based upon the `python package playsound <https://github.com/TaylorSMarks/playsound>`_, which required
 a little additional setup for getting it started. Do check out its documentation to get started.
 
-On macOs it boils down to installing `pyobjc`, as follows:
+On macOS it boils down to installing `pyobjc`, as follows:
 
 .. code:: shell
 
@@ -23,13 +23,13 @@ On macOs it boils down to installing `pyobjc`, as follows:
 
 Tests Coverage
 ----------------------------------------------
-Since some software handling coverages sometime get slightly different results, here's three of them:
+Since some software handling coverages sometimes get slightly different results, here's three of them:
 
 |coveralls| |sonar_coverage| |code_climate_coverage|
 
 Usage examples
 -----------------------------------------------
-So suppose you have your keras model `my_keras_model` and you want to hear a sound when it is done training.
+So suppose you have your Keras model `my_keras_model` and you want to hear a sound when it is done training.
 Here you go:
 
 .. code:: python
@@ -43,7 +43,7 @@ Here you go:
         ]
     )
 
-What acount a custom sound? Just pass it as an argument.
+What abount a custom sound? Just pass it as an argument.
 
 .. code:: python
 
