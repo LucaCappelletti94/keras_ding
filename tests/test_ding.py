@@ -1,6 +1,6 @@
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
-from tensorflow.keras_ding import Ding
+from keras_ding import Ding
 import silence_tensorflow
 import numpy as np
 
