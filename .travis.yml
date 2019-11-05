@@ -8,6 +8,7 @@ addons:
     token:
       secure: adWbLgVLpV3DIFK4zBnzcaLL3tuJWr0QqEC42A3rmo6Bth6kwbaqh6KbuscaEDPZ4KXjuoAjRLliDFXJ90PbZ411fFVfQOPlE5nkhOBaXIgCOXx+bYRlV+8dNrysvKujqlz/zMiEAAWW5EipDLTYs7SXXZfOMUHVJOBj/MvupVssE/1GcjHnWbJXR25WIWZQiWgWbyxw4JgGUtFEj8SspZllJ1dCX2F3lSZA3IIbQn3T28wcOZu1r2vDugtJqDpudKAyOuxstsdwwNC9dLlt5sGOb8VV7PVNGWd/wil9pMLWGcJwBSG2p6zYBlCUjGBzRJVkq3m096E6kNrFYG5OSyMk/DOPzDzcoDo37APPg49dzye1328vQfxKSp81nY8d+iPkjjHts1/716gFDfBIz2Kc3eF6t4s1vEBn1M993X7fuuk8NbhMsyYgKH02lvMvt+hyztm5sSa0yGPdo4lMB2SUo4ZnHEWZXl8lCdeBqQIzFgJJdlDXrRuFUtmb/CmPnAPv2g9QeBqY9NyPnLAqD/XFYvw2vuRwr/oCrm2QkrD/iRL0pLpD7LwgIgGsShEoON4UccxdiDYwnE/40pnqird3z9M+8hs49Z4/s549iQ2Wt6aZAgOgebVYQeWRQm64lFjxj5OQ5qcINI1oCwMZA1vhO1D7gHw27aRssAkFTLQ=
   apt:
+    update: true
     packages:
       - python3-dev
 language: python
