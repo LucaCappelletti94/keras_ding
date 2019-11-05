@@ -63,7 +63,9 @@ setup(
     # Add here the package dependencies
     install_requires=[
         "tensorflow",
-        "playsound"
+        "simpleaudio",
+        "jupyter",
+        "environments_utils"
     ],
     extras_require=extras,
 )

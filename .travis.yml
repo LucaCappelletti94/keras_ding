@@ -1,45 +1,24 @@
 dist: trusty
-sudo: true
+sudo: false
 git:
   depth: false
+addons:
+  sonarcloud:
+    organization: lucacappelletti94-github
+    token:
+      secure: adWbLgVLpV3DIFK4zBnzcaLL3tuJWr0QqEC42A3rmo6Bth6kwbaqh6KbuscaEDPZ4KXjuoAjRLliDFXJ90PbZ411fFVfQOPlE5nkhOBaXIgCOXx+bYRlV+8dNrysvKujqlz/zMiEAAWW5EipDLTYs7SXXZfOMUHVJOBj/MvupVssE/1GcjHnWbJXR25WIWZQiWgWbyxw4JgGUtFEj8SspZllJ1dCX2F3lSZA3IIbQn3T28wcOZu1r2vDugtJqDpudKAyOuxstsdwwNC9dLlt5sGOb8VV7PVNGWd/wil9pMLWGcJwBSG2p6zYBlCUjGBzRJVkq3m096E6kNrFYG5OSyMk/DOPzDzcoDo37APPg49dzye1328vQfxKSp81nY8d+iPkjjHts1/716gFDfBIz2Kc3eF6t4s1vEBn1M993X7fuuk8NbhMsyYgKH02lvMvt+hyztm5sSa0yGPdo4lMB2SUo4ZnHEWZXl8lCdeBqQIzFgJJdlDXrRuFUtmb/CmPnAPv2g9QeBqY9NyPnLAqD/XFYvw2vuRwr/oCrm2QkrD/iRL0pLpD7LwgIgGsShEoON4UccxdiDYwnE/40pnqird3z9M+8hs49Z4/s549iQ2Wt6aZAgOgebVYQeWRQm64lFjxj5OQ5qcINI1oCwMZA1vhO1D7gHw27aRssAkFTLQ=
 language: python
-matrix:
-  include:
-    - os: osx
-      osx_image: xcode10.1
-      language: generic
-      addons:
-        sonarcloud:
-          organization: lucacappelletti94-github
-          token:
-            secure: adWbLgVLpV3DIFK4zBnzcaLL3tuJWr0QqEC42A3rmo6Bth6kwbaqh6KbuscaEDPZ4KXjuoAjRLliDFXJ90PbZ411fFVfQOPlE5nkhOBaXIgCOXx+bYRlV+8dNrysvKujqlz/zMiEAAWW5EipDLTYs7SXXZfOMUHVJOBj/MvupVssE/1GcjHnWbJXR25WIWZQiWgWbyxw4JgGUtFEj8SspZllJ1dCX2F3lSZA3IIbQn3T28wcOZu1r2vDugtJqDpudKAyOuxstsdwwNC9dLlt5sGOb8VV7PVNGWd/wil9pMLWGcJwBSG2p6zYBlCUjGBzRJVkq3m096E6kNrFYG5OSyMk/DOPzDzcoDo37APPg49dzye1328vQfxKSp81nY8d+iPkjjHts1/716gFDfBIz2Kc3eF6t4s1vEBn1M993X7fuuk8NbhMsyYgKH02lvMvt+hyztm5sSa0yGPdo4lMB2SUo4ZnHEWZXl8lCdeBqQIzFgJJdlDXrRuFUtmb/CmPnAPv2g9QeBqY9NyPnLAqD/XFYvw2vuRwr/oCrm2QkrD/iRL0pLpD7LwgIgGsShEoON4UccxdiDYwnE/40pnqird3z9M+8hs49Z4/s549iQ2Wt6aZAgOgebVYQeWRQm64lFjxj5OQ5qcINI1oCwMZA1vhO1D7gHw27aRssAkFTLQ=
-      env:
-        - TRAVIS_PYTHON_VERSION=3.6.1
-        - OPTIONAL_DEPS=1
+python:
+- '3.6'
 before_install:
-  # prepare the system to install prerequisites or dependencies
-  - if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then
-      git clone https://github.com/matthew-brett/multibuild;
-      source multibuild/osx_utils.sh;
-      get_macpython_environment $TRAVIS_PYTHON_VERSION venv;
-    fi
+- pip install --upgrade pytest
 install:
-  - pip install pip --upgrade
-  - pip install 'gast==0.2.2'
-  - pip uninstall -y numpy
-  - pip install numpy --upgrade  --ignore-installed
-  - pip install tensorflow==2.0.0rc0
-  - pip install --upgrade pytest
-  - pip install pyobjc
-  - pip install .[test]
+- pip install .[test]
 before_script:
-  - if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then
-      curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-darwin-amd64 > ./cc-test-reporter;
-    else
-      curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter;
-    fi  
-  - chmod +x ./cc-test-reporter
-  - ./cc-test-reporter before-build
+- curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
+  > ./cc-test-reporter
+- chmod +x ./cc-test-reporter
+- "./cc-test-reporter before-build"
 after_script:
 - "./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT"
 script:
@@ -49,7 +28,7 @@ script:
 - coverage combine --append || true
 - coverage report
 - coverage xml
-- sonar-scanner
+- if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then sonar-scanner; fi
 after_success:
 - coveralls
 - python-codacy-coverage -r coverage.xml

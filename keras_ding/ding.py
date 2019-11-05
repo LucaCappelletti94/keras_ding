@@ -1,8 +1,10 @@
 from tensorflow import keras
 import os
 from typing import List
-from playsound import playsound
-
+from time import time
+from environments_utils import is_notebook
+from .utils import InvisibleAudio
+import simpleaudio
 
 __all__ = ["Ding"]
 
@@ -17,15 +19,14 @@ class Ding(keras.callbacks.Callback):
         ------------------------------------------
         path:str, the path to the file to play. If None, as by default, a simple *ding* sound will be played.
 
-        Returns
-        ----------------------
-        Return a new Ding object.
-
         Raises
         ----------------------
         ValueError
             If the given path does not correspond to a playable object.
 
+        Returns
+        ----------------------
+        Return a new Ding object.
         """
         super(Ding, self).__init__()
         if path is None:
@@ -41,4 +42,7 @@ class Ding(keras.callbacks.Callback):
         self._path = path
 
     def on_train_end(self, *args: List):
-        playsound(self._path)
+        if is_notebook():
+            InvisibleAudio(path=self._path).play()
+        else:
+            simpleaudio.WaveObject.from_wave_file(self._path).play()
