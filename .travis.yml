@@ -19,6 +19,7 @@ before_install:
 - pip uninstall -y numpy
 - pip install numpy --upgrade
 - pip install --upgrade pytest
+- pip install tensorflow==2.0.0rc0
 install:
 - pip install .[test]
 before_script:
