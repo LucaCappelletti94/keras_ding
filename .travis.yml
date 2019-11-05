@@ -16,8 +16,8 @@ language: python
 python:
 - '3.6'
 before_install:
-- pip uninstall numpy
-- pip install numpy
+- pip uninstall -y numpy
+- pip install numpy --upgrade
 - pip install --upgrade pytest
 install:
 - pip install .[test]
