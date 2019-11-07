@@ -2,24 +2,23 @@ keras_ding
 =========================================================================================
 |travis| |sonar_quality| |sonar_maintainability| |codacy| |code_climate_maintainability| |pip| |downloads|
 
-Keras callback for playing a sound when training is complete.
+Keras callback for playing a sound when training is complete. The callbacks additionally works also within jupyter notebook,
+so that if you are working on a notebook on a remote machine it plays the audio within your browser and not in the server.
 
 How do I install this package?
 ----------------------------------------------
-As usual, just download it using pip:
+You will need a couple packages that you might not already have installed:
+
+.. code:: shell
+
+    sudo apt install python3-dev
+    sudo apt install libasound2-dev
+
+Finally as usual, just download it using pip:
 
 .. code:: shell
 
     pip install keras_ding
-
-The callback is based upon the `python package playsound <https://github.com/TaylorSMarks/playsound>`_, which required
-a little additional setup for getting it started. Do check out its documentation to get started.
-
-On macOS it boils down to installing `pyobjc`, as follows:
-
-.. code:: shell
-
-    pip install pyobjc
 
 Tests Coverage
 ----------------------------------------------
