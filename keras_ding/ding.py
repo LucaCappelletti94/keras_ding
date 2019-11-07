@@ -41,6 +41,7 @@ class Ding(keras.callbacks.Callback):
         self._path = path
 
     def on_train_end(self, *args: List):
+        """Plays the sound at the end of training."""
         if is_notebook():
             InvisibleAudio(path=self._path).play()
         else:
