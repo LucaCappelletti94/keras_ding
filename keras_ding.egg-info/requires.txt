@@ -1,5 +1,7 @@
 tensorflow
-playsound
+simpleaudio
+jupyter
+environments_utils
 
 [test]
 pytest
