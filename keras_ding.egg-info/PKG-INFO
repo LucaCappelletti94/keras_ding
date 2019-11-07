@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: keras-ding
-Version: 1.0.1
+Version: 1.0.2
 Summary: Keras callback for playing a sound when training is complete.
 Home-page: https://github.com/LucaCappelletti94/keras_ding
 Author: Luca Cappelletti

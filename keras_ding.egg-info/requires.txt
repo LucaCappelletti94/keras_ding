@@ -1,4 +1,3 @@
-tensorflow
 simpleaudio
 jupyter
 environments_utils
