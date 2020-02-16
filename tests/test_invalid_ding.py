@@ -4,7 +4,9 @@ import pytest
 def test_ding():
     d = Ding()
     with pytest.raises(ValueError):
-        Ding("kebab")
+        Ding(sample="kebab")
     with pytest.raises(ValueError):
-        Ding("tests/test_invalid_ding.py")
-    Ding(d._path)
+        Ding(path="kebab")
+    with pytest.raises(ValueError):
+        Ding(path="tests/test_invalid_ding.py")
+    Ding(path=d._path)
