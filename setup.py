@@ -62,9 +62,7 @@ setup(
     tests_require=test_deps,
     # Add here the package dependencies
     install_requires=[
-        "simpleaudio",
-        "jupyter",
-        "environments_utils"
+        "ringbell>=1.0.1"
     ],
     extras_require=extras,
 )
