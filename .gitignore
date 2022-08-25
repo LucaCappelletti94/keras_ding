@@ -15,3 +15,5 @@ __pycache__
 
 coverage.xml
 \.ipynb*
+*.egg-info
+build

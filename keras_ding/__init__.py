@@ -1,3 +1,6 @@
-from .ding import Ding
+from support_developer import support_luca
+from .keras_ding import KerasDing
 
-__all__ = ["Ding"]
+support_luca("keras_ding")
+
+__all__ = ["KerasDing"]
